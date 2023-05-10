@@ -1,9 +1,8 @@
 import express from 'express'
+import { router } from './routes'
+const server = express()
 
-const server =  express()
-
-server.get('/api', (req, res) => {
-    res.send('hello world')
-})
+server.use(express.json())
+server.use(router)
 
 export { server }
