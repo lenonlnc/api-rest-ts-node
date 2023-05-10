@@ -3,16 +3,10 @@ import { StatusCodes } from 'http-status-codes'
 import { CompaniesController } from '../controllers'
 
 const router = Router()
-router.get('/companies', (req, res) => {
-    res.send('hello world')
-    return res.send(StatusCodes.ACCEPTED).json()
-})
-router.get('/company/:id', (req, res) => {
-    res.send('hello world')
-})
+router.get('/companies', CompaniesController.createValidation, CompaniesController.getAllCompanies)
 
 // post
-router.post('/company/insert', CompaniesController.createCompany)
+router.post('/company/insert', CompaniesController.createValidation, CompaniesController.createCompany)
 
 // put
 router.put('/company/update/:id', (req, res) => {
