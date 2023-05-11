@@ -2,18 +2,25 @@ import { Request, Response } from 'express'
 import * as yup from 'yup'
 import { validation } from '../../shared/middlewares/Validation'
 import { StatusCodes } from 'http-status-codes'
+import { ICompany } from '../../database/models'
+import { CompaniesProvider } from '../../database/providers/companies'
 
 interface IParamProps {
     id?: number
 }
-interface IBodyProps {
-    name?: string
-}
+interface IBodyProps extends Omit<ICompany, 'id'> {}
 
 export const updateCompanyValidation = validation((getSchema) => ({
     body: getSchema<IBodyProps>(
         yup.object().shape({
-            name: yup.string().required()
+            name: yup.string().required(),
+            corporate_name: yup.string().required(),
+            cnpj: yup.string().required().min(14),
+            cep: yup.string().required().min(8),
+            city: yup.string().required(),
+            state: yup.string().required(),
+            neighborhood: yup.string().required(),
+            complement: yup.string().required()
         })
     ),
     params: getSchema<IParamProps>(
@@ -24,8 +31,14 @@ export const updateCompanyValidation = validation((getSchema) => ({
 }))
 
 export const updateCompany = async (req: Request<IParamProps, {}, IBodyProps>, res: Response) => {
-    console.log(req.params)
-    console.log(req.body)
+    const result = await CompaniesProvider.updateCompany(req.params.id!, req.body)
 
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('not implemented yet')
+    if (result instanceof Error) {
+        return res.status(StatusCodes.BAD_REQUEST).json({
+            errors: {
+                default: result.message
+            }
+        })
+    }
+    return res.status(StatusCodes.OK).json(result)
 }

@@ -2,20 +2,13 @@ import { Request, Response } from 'express'
 import * as yup from 'yup'
 import { validation } from '../../shared/middlewares/Validation'
 import { StatusCodes } from 'http-status-codes'
+import { ICompany } from '../../database/models'
+import { CompaniesProvider } from '../../database/providers/companies'
 
-interface ICompany {
-    name: string
-    corporate_name: string
-    cnpj: string
-    cep: string
-    city: string
-    state: string
-    neighborhood: string
-    complement: string
-}
+interface IBodyProps extends Omit<ICompany, 'id'> {}
 
 export const createValidation = validation((getSchema) => ({
-    body: getSchema<ICompany>(
+    body: getSchema<IBodyProps>(
         yup.object().shape({
             name: yup.string().required(),
             corporate_name: yup.string().required(),
@@ -29,6 +22,15 @@ export const createValidation = validation((getSchema) => ({
     )
 }))
 
-export const createCompany = async (req: Request<{}, {}, ICompany>, res: Response) => {
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('not implemented yet')
+export const createCompany = async (req: Request<{}, {}, IBodyProps>, res: Response) => {
+    const result = await CompaniesProvider.create(req.body)
+
+    if (result instanceof Error) {
+        return res.status(StatusCodes.BAD_REQUEST).json({
+            errors: {
+                default: result.message
+            }
+        })
+    }
+    return res.status(StatusCodes.OK).json(result)
 }

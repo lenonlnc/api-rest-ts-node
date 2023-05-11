@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import * as yup from 'yup'
 import { validation } from '../../shared/middlewares/Validation'
 import { StatusCodes } from 'http-status-codes'
+import { CompaniesProvider } from '../../database/providers/companies'
 
 interface IParamProps {
     id?: number
@@ -16,6 +17,14 @@ export const deleteCompanyValidation = validation((getSchema) => ({
 }))
 
 export const deleteCompany = async (req: Request<IParamProps>, res: Response) => {
-    console.log(req.params)
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send('not implemented yet')
+    const result = await CompaniesProvider.deleteCompany(req.params.id!)
+
+    if (result instanceof Error) {
+        return res.status(StatusCodes.BAD_REQUEST).json({
+            errors: {
+                default: result.message
+            }
+        })
+    }
+    return res.status(StatusCodes.OK)
 }

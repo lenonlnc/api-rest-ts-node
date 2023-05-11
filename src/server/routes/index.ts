@@ -12,6 +12,6 @@ router.post('/company/insert', CompaniesController.createValidation, CompaniesCo
 router.put('/company/update/:id', CompaniesController.updateCompanyValidation, CompaniesController.updateCompany)
 
 // delete
-router.put('/company/delete/:id', CompaniesController.deleteCompanyValidation, CompaniesController.deleteCompany)
+router.delete('/company/delete/:id', CompaniesController.deleteCompanyValidation, CompaniesController.deleteCompany)
 
 export { router }
