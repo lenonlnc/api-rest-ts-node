@@ -2,13 +2,16 @@ import { RequestHandler } from 'express'
 import { StatusCodes } from 'http-status-codes'
 import { Schema, ValidationError } from 'yup'
 
-type TValidation = (schemas: Partial<TAllSchemas>) => RequestHandler
 type TProperty = 'body' | 'header' | 'params' | 'query'
+type TGetSchema = <T>(schema: Schema<T>) => Schema<T>
+type TGetAllSchemas = (getSchema: TGetSchema) => Partial<TAllSchemas>
 
 type TAllSchemas = Record<TProperty, Schema<any>>
+type TValidation = (getAllSchemas: TGetAllSchemas) => RequestHandler
 
-export const validation: TValidation = (schemas) => (req, res, next) => {
+export const validation: TValidation = (getAllSchemas) => (req, res, next) => {
     const errorsResult: Record<string, Record<string, string>> = {}
+    const schemas = getAllSchemas((schema) => schema)
 
     Object.entries(schemas).forEach(async ([key, schema]) => {
         try {
@@ -33,5 +36,5 @@ export const validation: TValidation = (schemas) => (req, res, next) => {
     if (Object.entries(errorsResult).length === 0) {
         return next()
     }
-    return res.status(StatusCodes.BAD_GATEWAY).json({ errors: errorsResult })
+    return res.status(StatusCodes.BAD_REQUEST).json({ errors: errorsResult })
 }

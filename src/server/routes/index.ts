@@ -1,20 +1,17 @@
 import { Router } from 'express'
-import { StatusCodes } from 'http-status-codes'
 import { CompaniesController } from '../controllers'
 
 const router = Router()
-router.get('/companies', CompaniesController.createValidation, CompaniesController.getAllCompanies)
+router.get('/companies', CompaniesController.getAllCompaniesValidation, CompaniesController.getAllCompanies)
+router.get('/company/:id', CompaniesController.getCompanyByIdValidation, CompaniesController.getCompanyById)
 
 // post
 router.post('/company/insert', CompaniesController.createValidation, CompaniesController.createCompany)
 
 // put
-router.put('/company/update/:id', (req, res) => {
-    res.send('hello world')
-})
+router.put('/company/update/:id', CompaniesController.updateCompanyValidation, CompaniesController.updateCompany)
 
 // delete
-router.delete('/company/delete/:id', (req, res) => {
-    res.send('hello world')
-})
+router.put('/company/delete/:id', CompaniesController.deleteCompanyValidation, CompaniesController.deleteCompany)
+
 export { router }
