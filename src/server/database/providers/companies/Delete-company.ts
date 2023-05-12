@@ -7,6 +7,6 @@ export const deleteCompany = async (id: number): Promise<boolean | Error> => {
 
         return true
     } catch (e) {
-        return Error(`Ocorreu um erro ao criar a empresa: ${e}`)
+        return Error(`Ocorreu um erro ao deletar a empresa: ${e}`)
     }
 }

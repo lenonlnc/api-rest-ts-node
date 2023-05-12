@@ -1,10 +1,10 @@
 import { ETableNames } from '../../ETable-names'
 import { Knex } from '../../knex'
-import { ICompany } from '../../models/Company'
+import { ILicense } from '../../models'
 
-export const getCompanyById = async (id: number): Promise<ICompany | Error> => {
+export const getLicenseById = async (id: number): Promise<ILicense | Error> => {
     try {
-        const result = await Knex(ETableNames.company).select('*').where('id', id).first()
+        const result = await Knex(ETableNames.license).select('*').where('id', id).first()
 
         if (result) {
             return result

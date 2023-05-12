@@ -8,6 +8,6 @@ export const updateCompany = async (id: number, company: Omit<ICompany, 'id'>): 
 
         return true
     } catch (e) {
-        return Error(`Ocorreu um erro ao criar a empresa: ${e}`)
+        return Error(`Ocorreu um erro ao atualizar os dados da empresa: ${e}`)
     }
 }

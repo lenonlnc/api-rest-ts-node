@@ -23,6 +23,7 @@ export const createValidation = validation((getSchema) => ({
 }))
 
 export const createCompany = async (req: Request<{}, {}, IBodyProps>, res: Response) => {
+
     const result = await CompaniesProvider.create(req.body)
 
     if (result instanceof Error) {

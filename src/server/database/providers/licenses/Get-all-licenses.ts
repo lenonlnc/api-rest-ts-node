@@ -1,10 +1,10 @@
 import { ETableNames } from '../../ETable-names'
 import { Knex } from '../../knex'
-import { ICompany } from '../../models'
+import { ILicense } from '../../models'
 
-export const getAllCompanies = async (page: number, limit: number): Promise<ICompany[] | Error> => {
+export const getAllLicenses = async (page: number, limit: number): Promise<ILicense[] | Error> => {
     try {
-        const result = await Knex(ETableNames.company)
+        const result = await Knex(ETableNames.license)
             .select('*')
             .offset((page - 1) * limit)
 
