@@ -22,7 +22,7 @@ export const getAllCompaniesValidation = validation((getSchema) => ({
 export const getAllCompanies = async (req: Request<{}, {}, {}, IQueryParams>, res: Response) => {
     const result = await CompaniesProvider.getAllCompanies(req.query.page || 1, req.query.limit || 10)
     if (result instanceof Error) {
-        return res.status(StatusCodes.BAD_REQUEST).json({
+        return res.status(StatusCodes.NOT_FOUND).json({
             errors: {
                 default: result.message
             }

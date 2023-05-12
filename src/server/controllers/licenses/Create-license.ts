@@ -33,7 +33,7 @@ export const createLicense = async (req: Request<{}, {}, IBodyProps>, res: Respo
     const result = await LicensesProvider.create(req.body)
 
     if (result instanceof Error) {
-        return res.status(StatusCodes.BAD_REQUEST).json({
+        return res.status(StatusCodes.UNPROCESSABLE_ENTITY).json({
             errors: {
                 default: result.message
             }

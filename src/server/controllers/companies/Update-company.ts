@@ -34,7 +34,7 @@ export const updateCompany = async (req: Request<IParamProps, {}, IBodyProps>, r
     const result = await CompaniesProvider.updateCompany(req.params.id!, req.body)
 
     if (result instanceof Error) {
-        return res.status(StatusCodes.BAD_REQUEST).json({
+        return res.status(StatusCodes.UNPROCESSABLE_ENTITY).json({
             errors: {
                 default: result.message
             }

@@ -20,7 +20,7 @@ export const deleteLicense = async (req: Request<IParamProps>, res: Response) =>
     const result = await LicensesProvider.deleteLicense(req.params.id!)
 
     if (result instanceof Error) {
-        return res.status(StatusCodes.BAD_REQUEST).json({
+        return res.status(StatusCodes.UNPROCESSABLE_ENTITY).json({
             errors: {
                 default: result.message
             }

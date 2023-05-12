@@ -19,7 +19,7 @@ export const getLicenseByIdValidation = validation((getSchema) => ({
 export const getLicenseById = async (req: Request<IParamProps>, res: Response) => {
     const result = await LicensesProvider.getLicenseById(req.params.id!)
     if (result instanceof Error) {
-        return res.status(StatusCodes.BAD_REQUEST).json({
+        return res.status(StatusCodes.NOT_FOUND).json({
             errors: {
                 default: result.message
             }

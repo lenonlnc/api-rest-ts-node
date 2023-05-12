@@ -19,7 +19,7 @@ export const getCompanyByIdValidation = validation((getSchema) => ({
 export const getCompanyById = async (req: Request<IParamProps>, res: Response) => {
     const result = await CompaniesProvider.getCompanyById(req.params.id!)
     if (result instanceof Error) {
-        return res.status(StatusCodes.BAD_REQUEST).json({
+        return res.status(StatusCodes.NOT_FOUND).json({
             errors: {
                 default: result.message
             }
