@@ -3,6 +3,9 @@
 Este é um projeto de API REST, com TypeScript, NodeJS e banco de dados relacional rodando com XAMPP em localhost.
 Nele é possível, adicionar itens, fazer requisições, altera-las e deleta-las.
 
+
+Primeiramente é necessário clonar o repositório, após isso, dentro do editor de código seguimos os seguintes passos:
+
 Para rodar o servidor, primeiro é necessário instalar todas as dependências no terminal com o comando:
 ```
 npm i
