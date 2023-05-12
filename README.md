@@ -1,4 +1,4 @@
-# api-rest-ts-node
+# API REST com TypeScript e Nodejs
 
 Este é um projeto de API REST, com TypeScript, NodeJS e banco de dados relacional rodando com XAMPP em localhost.
 Nele é possível, adicionar itens, fazer requisições, altera-las e deleta-las.
@@ -49,4 +49,140 @@ https://insomnia.rest/
 
 Postman:
 https://www.postman.com/
+
+
+
+
+
+# Dentro da API
+
+Nesta seção, irei explicar as endpoints da API juntamente com os tipos de dado de entrada e saída de cada rota.
+Começando pelas rotas de inserção de dados no banco, ou rotas de POST:
+
+# POST
+A API conta com as seguintes rotas de inserção:
+
+```
+/license/insert
+
+``` 
+e
+
+```
+/company/insert
+
+``` 
+
+Na primeira rota, temos a inserção de Licenças. a entrada de dados necessária é em formato JSON da seguinte forma:
+
+```
+{
+	"number": "1231231212312331",
+	"environmental_agency" : "FEPAM",
+	"issued_at": "2023-05-12",
+	"validity": "2015-05-12",
+	"company_id": 2
+}
+
+```
+
+no caso da coluna de validity é interessante o uso do plugin que eu citei acima, pois a coluna issued_at, que é a data de emissão, vai ser sempre a data do dia em que foi criada a licença.
+
+
+Ja na rota de empresas, temos a seguinte entrada de dados:
+```
+{
+	"name" : "HyperX",
+	"corporate_name": "razão social",
+		"cnpj": "12345278901234",
+		"cep": "12345678",
+		"city": "porto alegre",
+		"state": "rs",
+		"neighborhood": "rio branco",
+		"complement": "complemento"
+}
+
+```
+O retorno de ambos os endpoints é um number, que é o id do item criado.
+
+
+# DELETE
+
+A API conta com as seguintes rotas de deleção:
+
+```
+/license/delete/:id
+
+```
+e
+
+```
+/company/delete/:id
+
+```
+Ambas as rotas recebem o id da licença ou empresa à serem deletadas e tem o retorno ```true```
+
+
+# PUT
+
+A API conta com as seguintes rotas de atualização:
+
+```
+/license/update/:id
+
+```
+e
+
+```
+/company/update/:id
+
+```
+
+Ambas as rotas, novamente, recebem o id da licença ou empresa à serem deletadas e tem o retorno ```true```
+
+
+# GET
+
+A API conta com as seguintes rotas de requisição:
+
+# getAllLicenses
+
+```
+
+/licenses?page=1&limit=10&filter='' 
+
+```
+Recebe somente na url, por questões de possível paginação, a pagina, o limite de dados a serem retornados, e um possível filtro. E retorna todas as licenças disponíveis no banco.
+
+
+# getAllCompanies
+
+```
+
+/companies?page=1&limit=10&filter='' 
+
+```
+Assim como a anterior, esta rota recebe os mesmos dados dentro da url, e retorna todas as empresas no disponíveis no banco.
+
+
+# getLicenseById
+
+```
+
+/license/:id
+
+```
+Recebe na url o id de uma licença e retorna todos os dados da mesma.
+
+
+# getCompanyById
+
+```
+
+/company/:id
+
+```
+Recebe na url o id de uma empresa e retorna todos os dados da mesma.
+
+
 
