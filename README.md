@@ -23,7 +23,7 @@ Após isso, é necessário o download do arquivo do banco de dados para uso, o a
 https://drive.google.com/file/d/1ogWDwlJLiwz5lGvYLqx-FF9CF9WxxjA8/view?usp=sharing
 
 
-Com o arquivo baixado, é necessário o download da ferramente XAMPP para poder rodar o banco localmente, o link para download da ferramenta está logo abaixo:
+Com o arquivo baixado, é necessário o download da ferramenta XAMPP para poder rodar o banco localmente, o link para download da ferramenta está logo abaixo:
 https://www.apachefriends.org/pt_br/download.html
 
 após instalar a ferramenta, você precisa abrir o painel de controle e iniciar os serviços Mysql e Apache como na imagem a seguir:
