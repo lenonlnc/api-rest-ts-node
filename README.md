@@ -44,7 +44,7 @@ Para testes das requisições dos endpoints eu sugiro o uso de um app específic
 Vou deixar o link para download de ambos abaixo junto com o link de um plugin de datas do insomnia que utiliza momentjs, para poder inserir datas nas requisições com mais facilidade.
 
 Insomnia:
-https://insomnia.rest/plugins/insomnia-plugin-date-add
+https://insomnia.rest/plugins/insomnia-plugin-date-add, 
 https://insomnia.rest/
 
 Postman:
