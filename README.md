@@ -20,8 +20,7 @@ yarn add
 
 Após isso, é necessário o download do arquivo do banco de dados para uso, o arquivo pode ser encontrado no link abaixo:
 
-https://drive.google.com/file/d/1ogWDwlJLiwz5lGvYLqx-FF9CF9WxxjA8/view?usp=sharing
-
+https://drive.google.com/file/d/12n_t_6Is4Ixu_48KCGbm3VskRKNKd_LH/view?usp=sharing
 
 Com o arquivo baixado, é necessário o download da ferramenta XAMPP para poder rodar o banco localmente, o link para download da ferramenta está logo abaixo:
 https://www.apachefriends.org/pt_br/download.html
